@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسالة خاصة للمس ضحى 💙</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Amiri', serif;
+            background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 50%, #2f80ed 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* المشهد الأول */
+        .scene1 {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .main-title {
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 50px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px #ffffff; }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px #ffffff, 0 0 30px #ffffff; }
+        }
+        
+        .hearts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+            max-width: 800px;
+        }
+        
+        .heart-card {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heart-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 40px rgba(79, 172, 254, 0.6);
+        }
+        
+        .heart-card::before {
+            content: '⭐';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+            color: white;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .heart-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .heart-message {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            color: #2f80ed;
+            font-weight: bold;
+        }
+        
+        .floating-icons {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: floatUp 4s linear infinite;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* المشهد الثاني - الاختراق */
+        .hack-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .hack-window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            max-width: 500px;
+            background: #000;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 30px #00ff41;
+            animation: hackGlitch 0.2s ease-in-out infinite;
+        }
+        
+        @keyframes hackGlitch {
+            0%, 100% { transform: translate(-50%, -50%); }
+            25% { transform: translate(-50%, -50%) skew(0.5deg); }
+            50% { transform: translate(-50%, -50%) skew(-0.5deg); }
+            75% { transform: translate(-50%, -50%) skew(0.2deg); }
+        }
+        
+        .hack-header {
+            color: #ff0000;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+            animation: blink 0.5s infinite;
+        }
+        
+        .hack-code {
+            font-size: 0.8rem;
+            line-height: 1.3;
+            margin: 10px 0;
+        }
+        
+        .hack-line {
+            margin: 3px 0;
+        }
+        
+        .system { color: #00ff41; }
+        .error { color: #ff5555; }
+        .warning { color: #ffaa00; }
+        .success { color: #55ff55; }
+        
+        /* نافذة الرسالة الصوتية */
+        .voice-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            color: white;
+            font-family: 'Amiri', serif;
+        }
+        
+        .voice-window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #003366, #0066cc);
+            border: 3px solid #4facfe;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 50px #4facfe;
+        }
+        
+        .voice-message {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+        
+        .voice-highlight {
+            color: #ffff00;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ffff00;
+        }
+        
+        .voice-message {
+            background: #003366;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            text-align: center;
+            border: 2px solid #4facfe;
+        }
+        
+        /* المشهد الثالث - العودة الملكية */
+        .scene3 {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        .crown {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .royal-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        
+        .royal-message {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .final-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px auto;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+        
+        .test-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+        }
+        
+        .qr-code {
+            margin-top: 30px;
+        }
+        
+        .qr-code img {
+            max-width: 200px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .explosion {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            animation: flash 0.5s ease-in-out;
+        }
+        
+        @keyframes flash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #ff0000);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* تأثيرات إضافية */
+        .hidden {
+            display: none !important;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .hearts-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hack-window {
+                width: 95%;
+            }
+            
+            .royal-title {
+                font-size: 2rem;
+            }
+            
+            .royal-message {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الأيقونات المتحركة في الخلفية -->
+    <div class="floating-icons" id="floatingIcons"></div>
+    
+    <!-- المشهد الأول -->
+    <div class="scene1" id="scene1">
+        <div class="container">
+            <h1 class="main-title">رسالة خاصة من البنات إلى أحلى مس ضحى ✨</h1>
+            
+            <div class="hearts-container">
+                <div class="heart-card" onclick="openHeart(this, 'ألين')">
+                    <h3>ألين 💡</h3>
+                    <div class="heart-message">
+                        مس ضحى، إنتي مش بس معلمة... إنتي ملهمة! 💫
+                        بتخليني أحب الرياضيات وأشوف جمالها 🌟
+                    </div>
+                </div>
+                
+                <div class="heart-card" onclick="openHeart(this, 'ريتال')">
+                    <h3>ريتال ✨</h3>
+                    <div class="heart-message">
+                        شكراً لأنك بتصبري علينا وبتفهمينا بكل حب 💙
+                        إنتي أحلى معلمة في الدنيا! 🌸
+                    </div>
+                </div>
+                
+                <div class="heart-card" onclick="openHeart(this, 'سميرة')">
+                    <h3>سميرة 🌟</h3>
+                    <div class="heart-message">
+                        مس ضحى، إنتي بتخلي الأرقام تحكي قصص حلوة 📚
+                        وبتخليني أحس إني ذكية! ✨
+                    </div>
+                </div>
+                
+                <div class="heart-card" onclick="openHeart(this, 'لينا')">
+                    <h3>لينا 💎</h3>
+                    <div class="heart-message">
+                        إنتي مش بس بتعلمينا رياضيات... بتعلمينا نحب نفسنا 💝
+                        شكراً لكل لحظة حب! 🌺
+                    </div>
+                </div>
+                
+                <div class="heart-card" onclick="openHeart(this, 'نور')">
+                    <h3>نور 🔥</h3>
+                    <div class="heart-message">
+                        مع إنك بتقولي البنات أذكى من الأولاد 😄
+                        بس إحنا بنحبك لأنك بتؤمني فينا! 💪
+                    </div>
+                </div>
+                
+                <div class="heart-card" onclick="openHeart(this, 'مريم')">
+                    <h3>مريم 🚀</h3>
+                    <div class="heart-message">
+                        مس ضحى، إنتي السبب إني بشوف المستقبل مشرق 🌅
+                        وإني بحلم أكون عالمة رياضيات زيك! 🚀
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- المشهد الثاني - الاختراق -->
+    <div class="hack-overlay" id="hackOverlay">
+        <div class="hack-window">
+            <div class="hack-header">⚠️ SYSTEM BREACH DETECTED ⚠️</div>
+            <div class="hack-code" id="hackingCode"></div>
+        </div>
+    </div>
+    
+    <!-- نافذة الرسالة الصوتية -->
+    <div class="voice-overlay" id="voiceOverlay">
+        <div class="voice-window">
+            <div class="voice-message" id="voiceText"></div>
+        </div>
+    </div>
+    
+    <!-- المشهد الثالث - العودة الملكية -->
+    <div class="scene3" id="scene3">
+        <div class="container">
+            <div class="crown">👑</div>
+            <h1 class="royal-title">مش بس نحب... بنفكر، بنكتشف، وبنصلّح!</h1>
+            
+            <div class="royal-message">
+                شكراً مس ضحى... لأنك وثقتي بعقول البنات 💙
+            </div>
+            
+            <div class="royal-message">
+                إذا بدكم تصلحوا الأخطاء… لازمكم إذن من ملكات الرياضيات!
+            </div>
+            
+            <div class="final-section">
+                <h3>اختبار معرفة مدى حب الطلاب لمس ضحى 🙈</h3>
+                
+                <a href="https://forms.office.com/r/QXdh9KegKg" target="_blank" class="test-link">
+                    ✨ ادخلوا الاختبار هون ✨
+                </a>
+                
+                <div class="qr-code">
+                    <p>أو امسحوا الكود:</p>
+                    <img src="https://i.postimg.cc/2j9YmM4d/AD39-A353-4951-406-B-A6-CD-171-BF645-FE54.jpg" alt="QR Code">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let openedHearts = 0;
+        const totalHearts = 6;
+        
+        // إنشاء الأيقونات المتحركة
+        function createFloatingIcons() {
+            const iconsContainer = document.getElementById('floatingIcons');
+            const icons = ['⭐', '✨', '💡', '🌟', '💎', '🔮', '🔹', '🔷'];
+            
+            setInterval(() => {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                icon.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                iconsContainer.appendChild(icon);
+                
+                setTimeout(() => {
+                    icon.remove();
+                }, 5000);
+            }, 800);
+        }
+        
+        // فتح القلب
+        function openHeart(element, name) {
+            const message = element.querySelector('.heart-message');
+            if (message.style.display === 'none' || !message.style.display) {
+                message.style.display = 'block';
+                message.classList.add('fade-in');
+                openedHearts++;
+                
+                // تأثير صوتي (محاكاة)
+                element.style.animation = 'none';
+                setTimeout(() => {
+                    element.style.animation = 'float 3s ease-in-out infinite';
+                }, 100);
+                
+                // إذا تم فتح 3 قلوب، ابدأ المشهد الثاني
+                if (openedHearts >= 3) {
+                    setTimeout(() => {
+                        startHackingScene();
+                    }, 1000); // قللت الانتظار من 2000 إلى 1000
+                }
+            }
+        }
+        
+        // بدء مشهد الاختراق
+        function startHackingScene() {
+            // إظهار نافذة الاختراق فوق الشاشة الحالية
+            document.getElementById('hackOverlay').style.display = 'block';
+            
+            // بدء كتابة الكود (4 ثواني فقط)
+            typeHackingCode();
+        }
+        
+        // كتابة كود الاختراق السريع
+        function typeHackingCode() {
+            const hackingCommands = [
+                { text: "root@system:~# scan --target=BOYS_MATH_MODULE", class: "system", delay: 30 }, // قللت التأخير من 80 إلى 30
+                { text: "ERROR: Module not responding...", class: "error", delay: 20 }, // قللت التأخير من 60 إلى 20
+                { text: "CRITICAL: System failure detected", class: "error", delay: 25 }, // قللت التأخير من 70 إلى 25
+                { text: "Initiating GIRLS_POWER_PROTOCOL...", class: "success", delay: 30 }, // قللت التأخير من 80 إلى 30
+                { text: ">>> BREACH SUCCESSFUL <<<", class: "warning", delay: 40 }, // قللت التأخير من 100 إلى 40
+                { text: "OVERRIDE COMPLETE - GIRLS IN CONTROL", class: "success", delay: 30 } // قللت التأخير من 90 إلى 30
+            ];
+            
+            const codeContainer = document.getElementById('hackingCode');
+            let commandIndex = 0;
+            
+            function typeCommand() {
+                if (commandIndex < hackingCommands.length) {
+                    const command = hackingCommands[commandIndex];
+                    const line = document.createElement('div');
+                    line.className = `hack-line ${command.class}`;
+                    codeContainer.appendChild(line);
+                    
+                    let charIndex = 0;
+                    function typeChar() {
+                        if (charIndex < command.text.length) {
+                            line.textContent += command.text[charIndex];
+                            charIndex++;
+                            setTimeout(typeChar, command.delay);
+                        } else {
+                            commandIndex++;
+                            setTimeout(typeCommand, 100); // قللت الانتظار بين الأوامر من 200 إلى 100
+                        }
+                    }
+                    typeChar();
+                } else {
+                    // بعد انتهاء الكود، إخفاء الاختراق وإظهار الرسالة الصوتية بسرعة
+                    setTimeout(() => {
+                        document.getElementById('hackOverlay').style.display = 'none';
+                        showVoiceMessage();
+                    }, 500); // قللت الانتظار من 1000 إلى 500
+                }
+            }
+            
+            typeCommand();
+        }
+        
+        // إظهار الرسالة الصوتية
+        function showVoiceMessage() {
+            document.getElementById('voiceOverlay').style.display = 'block';
+            
+            const messages = [
+                "اكتشفنا خطأ في نظام الرياضيات...",
+                "<span class='voice-highlight'>الأولاد</span> أعطونا عين وخرب النظام 😤",
+                "و<span class='voice-highlight'>البنات</span> أنقذوا النظام! 💪✨"
+            ];
+            
+            let messageIndex = 0;
+            const voiceText = document.getElementById('voiceText');
+            
+            function showNextMessage() {
+                if (messageIndex < messages.length) {
+                    voiceText.innerHTML = messages[messageIndex];
+                    messageIndex++;
+                    
+                    // قللت أوقات الانتظار بين الرسائل
+                    const delay = messageIndex === 1 ? 2000 : messageIndex === 2 ? 1500 : 1500;
+                    setTimeout(showNextMessage, delay);
+                } else {
+                    setTimeout(() => {
+                        document.getElementById('voiceOverlay').style.display = 'none';
+                        startRoyalScene();
+                    }, 1000); // قللت الانتظار من 2000 إلى 1000
+                }
+            }
+            
+            showNextMessage();
+        }
+        
+        // بدء المشهد الملكي
+        function startRoyalScene() {
+            document.getElementById('scene1').style.display = 'none';
+            document.getElementById('scene3').style.display = 'block';
+            document.getElementById('scene3').classList.add('fade-in');
+        }
+        
+        // بدء التطبيق
+        window.onload = function() {
+            createFloatingIcons();
+        };
+    </script>
+</body>
+</html>
